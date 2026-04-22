@@ -116,5 +116,18 @@ def main():
     else:
         print("\n⚠️ Nenhuma notícia encontrada.")
 
+def executar_com_seguranca():
+    """
+    Executa a extração com tratamento de erros globais.
+    """
+    try:
+        main()
+    except requests.exceptions.ConnectionError:
+        print("❌ Erro de conexão. Verifique sua internet.")
+    except requests.exceptions.Timeout:
+        print("❌ O site demorou muito para responder.")
+    except Exception as e:
+        print(f"❌ Erro inesperado: {e}")
+
 if __name__ == "__main__":
-    main()
+    executar_com_seguranca()
